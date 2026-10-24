@@ -1,0 +1,48 @@
+version: "2"
+run:
+  concurrency: 4
+  modules-download-mode: readonly
+linters:
+  enable:
+    - errorlint
+    - exhaustruct
+    - goheader
+    - grouper
+    - nilerr
+    - nilnil
+    - nolintlint
+    - reassign
+    - wastedassign
+  settings:
+    exhaustruct:
+      include:
+        - example\.com/widgetsvc/models\..*
+        - example\.com/widgetsvc/spec\..*
+        - example\.com/widgetsvc/wiring\..*
+    goheader:
+      template-path: .github/copyright_header.tmpl
+      values:
+        regexp:
+          YEAR: "\\d{4}"
+  exclusions:
+    generated: lax
+    rules:
+      - linters: [exhaustruct]
+        path: repositories.*go
+      - linters: [exhaustruct]
+        path: _test\.go
+    paths:
+      - spec
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - example.com/widgetsvc
+  exclusions:
+    generated: lax
+    paths:
+      - spec
