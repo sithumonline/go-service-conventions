@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Installs the go-service-conventions project playbook into a repo that uses pstack.
+# Only for repos that use this skill's default stack. Repos with their own
+# framework (RonyKit, Gin, sqlc, ...) rely on the global CLAUDE.md block instead.
 # Usage: pstack/install.sh <project-root>
 set -euo pipefail
 root="${1:?usage: install.sh <project-root>}"

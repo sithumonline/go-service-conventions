@@ -32,6 +32,10 @@ rm -rf .claude/skills/go-service-conventions/.git
 
 Claude loads it when you start or change a Go service or CLI. You can also invoke it with `/go-service-conventions`.
 
+### Repos with their own conventions
+
+The skill checks the repo first. If `AGENTS.md`, `CLAUDE.md`, `.claude/rules/` or the lint config name a framework or layout (RonyKit, Gin, sqlc, fx, ...), those win. Only the skill's portable rules apply there, written in the repo's own packages: error mapping, stable error codes, tenant from identity, ctx propagation, concurrency, logging hygiene. The default stack, `scaffold/`, and `pstack/install.sh` are for repos without their own conventions.
+
 ### Apply it in every session (recommended)
 
 The skill loads when a task matches its description. To make Claude apply it every time, and pass it to pstack's subagents, add a short block to your global `~/.claude/CLAUDE.md`:
