@@ -23,6 +23,10 @@ Distilled from a production control-plane API, its trace API, and its CLI. Apply
 
 It wires DI by hand in `wiring/wiring.go`. Switch to `google/wire` once there are more than a handful of resources. `middleware.TokenVerifier` has no production implementation. Inject a JWKS verifier in `main.go`.
 
+## Running under pstack
+
+When a pstack playbook delegates code-writing, put this file's absolute path and the one matching reference in the brief, and tell the delegate to read both first. This file's done checklist is part of verify, and gets walked again before opening a PR. A repo's `.agents/playbooks/go-service.md` (installed by `pstack/install.sh`) ties these to specific pstack steps and takes precedence.
+
 ## Non-negotiable rules
 
 1. **Three layers, each behind an interface.** Controller (HTTP only) → service (business logic) → repository (persistence only). Each layer receives the interface of the layer below through a `NewXxx(deps...) Xxx` constructor that returns the interface and hides an unexported struct.
