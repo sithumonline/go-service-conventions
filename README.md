@@ -20,13 +20,13 @@ It covers:
 Personal (every project on your machine):
 
 ```bash
-git clone https://github.com/<you>/go-service-conventions ~/.claude/skills/go-service-conventions
+git clone https://github.com/sithumonline/go-service-conventions ~/.claude/skills/go-service-conventions
 ```
 
 One project (shared with the team through the repo):
 
 ```bash
-git clone https://github.com/<you>/go-service-conventions .claude/skills/go-service-conventions
+git clone https://github.com/sithumonline/go-service-conventions .claude/skills/go-service-conventions
 rm -rf .claude/skills/go-service-conventions/.git
 ```
 
