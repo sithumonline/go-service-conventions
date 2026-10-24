@@ -32,6 +32,26 @@ rm -rf .claude/skills/go-service-conventions/.git
 
 Claude loads it when you start or change a Go service or CLI. You can also invoke it with `/go-service-conventions`.
 
+## Use with pstack
+
+[pstack](https://github.com/michael-denyer/pstack-claude) routes work through playbooks (Feature, Refactoring, Bug fix). Its project playbooks let a repo add steps to those without forking pstack. `pstack/go-service.md` is one. It makes pstack:
+
+- load this skill before `how` on a Feature, and start new services from `scaffold/`
+- name this skill's `SKILL.md` in every code-writing delegate's brief
+- run this skill's done checklist as part of verify
+- use the controller → service → repository layering as the refactoring target shape
+- check error mapping first when fixing a bug
+
+Install it into a Go repo that uses pstack (the script also runs pstack's playbook checker):
+
+```bash
+~/.claude/skills/go-service-conventions/pstack/install.sh /path/to/your/go/repo
+```
+
+Commit the resulting `.agents/playbooks/go-service.md` so the team gets it. Rerun the script after a pstack upgrade. The checker fails if pstack reworded a step this playbook anchors on.
+
+Project playbooks need a pstack build that has them (the Claude Code port 0.9.86 does). The `backnotprop/pstack` mirror does not yet.
+
 ## Layout
 
 ```text
@@ -42,6 +62,7 @@ references/platform.md           config, logging, bootstrap, DB, outbound client
 references/testing-and-lint.md
 references/cli.md                cobra CLI conventions
 scaffold/                        compilable reference service
+pstack/                          project playbook + installer for pstack users
 ```
 
 ## Verify the scaffold
